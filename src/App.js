@@ -19,7 +19,9 @@ export default function App() {
   }
 
   function handleDeleteAllItems() {
-    setItems([]);
+    const confirmed = window.confirm('Are you sure you want to delete all items?')
+
+    if(confirmed) setItems([]);
   }
 
   return (
@@ -94,10 +96,12 @@ function PackingList({ items, onDeleteItem, onToggleItem, onDeleteAllItems }) {
 
   if (sortBy === "input") sortedItems = items;
 
+  // alphabetical sorting
   if (sortBy === "description")
     sortedItems = items
       .slice()
-      .sort((a, b) => a.description.localeCompare(b.description));
+      .sort((a, b) => a.description
+      .localeCompare(b.description));
 
   if (sortBy === "packed")
     sortedItems = items
@@ -167,3 +171,6 @@ function Stats({ items }) {
     </footer>
   );
 }
+
+
+
